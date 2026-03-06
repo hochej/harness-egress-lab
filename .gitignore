@@ -2,6 +2,16 @@ node_modules/
 dist/
 .artifacts/
 .pi/
+
+# Local env / editor / OS files
+.env
+.env.*
+.DS_Store
+
+# Local Claude Code / Anthropic working files
+.claude/
+
+# Generated logs
 logs/*.ndjson
 logs/*.json
 logs/*.md
