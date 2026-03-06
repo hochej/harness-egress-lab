@@ -5,9 +5,15 @@ Standalone Gondolin-based lab for reproducible harness egress analysis inside mo
 Initial scope:
 - profile: `claude-code`
 - provider scenario: `openrouter`
-- comparison modes:
-  - `openrouter-vanilla`
-  - `openrouter-noextra`
+- comparison modes: `openrouter-vanilla`, `openrouter-noextra`
+
+## Prerequisites
+
+- Node.js `>=23.6.0`
+- `pnpm`
+- Gondolin host requirements working locally
+- `OPENROUTER_API_KEY` already present in your shell
+- Gondolin guest sources available locally for image builds
 
 ## Quick start
 
@@ -64,6 +70,7 @@ node dist/cli.js report claude-code ./logs/claude-noextra.ndjson \
 ```
 
 ## Commands
+
 - `build-image <profile>`
 - `run <profile>`
 - `summarize <log.ndjson>`
@@ -71,14 +78,38 @@ node dist/cli.js report claude-code ./logs/claude-noextra.ndjson \
 - `report <profile> <log.ndjson>`
 - `profiles`
 
-## Docs
-- `docs/workflow.md` — the reproducible workflow
-- `docs/claude-code.md` — profile-specific notes
-- `docs/reports/claude-code-openrouter-manual.md` — main Claude Code findings
-- `docs/architecture.md` — code layout
+## Useful flags
 
-## Notes
-- HTTP is the main focus in v1
-- `log-only` is best for reproducible comparisons
-- `first-host` and `always` are better for exploratory runs
-- SSH git/exec confirmation is supported when `SSH_AUTH_SOCK` is set
+Exploration:
+
+```bash
+--confirm-mode first-host
+--confirm-mode always
+```
+
+Strict host policy:
+
+```bash
+--allow-host openrouter.ai
+--deny-host api.anthropic.com
+```
+
+Full-body capture for known telemetry endpoints:
+
+```bash
+--full-body-host api.anthropic.com
+--full-body-path /api/event_logging/batch
+```
+
+## Reproducibility tips
+
+- Reuse the same image for both runs
+- Use the same workspace and roughly the same task flow
+- Prefer `log-only` for comparisons
+- Keep reports in `docs/reports/`
+
+## Docs
+
+- `docs/architecture.md` — code layout
+- `docs/claude-code.md` — profile-specific config & caveats
+- `docs/reports/claude-code-openrouter-manual.md` — main Claude Code findings
