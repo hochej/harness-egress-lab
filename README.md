@@ -2,7 +2,7 @@
 
 ![harness-egress-lab repo image](./docs/assets/repo-image.jpeg)
 
-Standalone Gondolin-based lab for reproducible harness egress analysis inside monitored VMs.
+Standalone [Gondolin](https://github.com/earendil-works/gondolin)-based lab for reproducible harness egress analysis inside monitored VMs.
 
 Initial scope:
 - profile: `claude-code`

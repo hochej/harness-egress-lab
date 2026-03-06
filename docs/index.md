@@ -1,6 +1,6 @@
 # harness-egress-lab
 
-Standalone Gondolin-based lab for reproducible harness egress analysis inside monitored VMs.
+Standalone [Gondolin](https://github.com/earendil-works/gondolin)-based lab for reproducible harness egress analysis inside monitored VMs.
 
 **Initial scope:** `claude-code` profile with OpenRouter (`openrouter-vanilla` / `openrouter-noextra`).
 
