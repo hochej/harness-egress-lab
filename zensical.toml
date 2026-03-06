@@ -1,0 +1,44 @@
+# Zensical configuration
+# Docs: https://zensical.org/docs/get-started/
+
+[project]
+site_name = "harness-egress-lab"
+docs_dir = "docs"
+site_dir = "site"
+
+repo_url = "https://github.com/hochej/harness-egress-lab"
+edit_uri = "edit/main/docs"
+
+nav = [
+    {"Home" = "index.md"},
+    {"Architecture" = "architecture.md"},
+    {"Claude Code Profile" = "claude-code.md"},
+    {"Reports" = [
+        {"Claude Code / OpenRouter" = "reports/claude-code-openrouter-manual.md"},
+    ]},
+]
+
+[project.theme]
+font = false
+favicon = "assets/repo-image.jpeg"
+
+features = [
+    "content.action.view",
+    "content.action.edit",
+    "content.code.copy",
+]
+
+[project.theme.icon]
+logo = "material/cube-outline"
+
+[[project.theme.palette]]
+scheme = "default"
+primary = "grey"
+accent = "grey"
+toggle = { icon = "material/weather-night", name = "Switch to dark mode" }
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "grey"
+accent = "grey"
+toggle = { icon = "material/weather-sunny", name = "Switch to light mode" }
