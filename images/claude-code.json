@@ -1,0 +1,42 @@
+{
+  "arch": "aarch64",
+  "distro": "alpine",
+  "alpine": {
+    "version": "3.23.0",
+    "kernelPackage": "linux-virt",
+    "kernelImage": "vmlinuz-virt",
+    "rootfsPackages": [
+      "linux-virt",
+      "rng-tools",
+      "bash",
+      "ca-certificates",
+      "curl",
+      "git",
+      "nodejs",
+      "npm",
+      "openssh",
+      "ripgrep"
+    ],
+    "initramfsPackages": []
+  },
+  "rootfs": {
+    "label": "gondolin-root",
+    "sizeMb": 1024
+  },
+  "postBuild": {
+    "copy": [
+      {
+        "src": "../staging/claude-code",
+        "dest": "/opt/claude-code"
+      },
+      {
+        "src": "../staging/claude-wrapper",
+        "dest": "/usr/local/bin/claude"
+      },
+      {
+        "src": "../staging/claude-wrapper",
+        "dest": "/usr/bin/claude"
+      }
+    ]
+  }
+}
