@@ -16,3 +16,6 @@ logs/*.ndjson
 logs/*.json
 logs/*.md
 !.gitkeep
+
+# Local planning notes
+harness-egress-lab-plan.md
