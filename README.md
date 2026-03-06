@@ -1,26 +1,15 @@
 # harness-egress-lab
 
-![harness-egress-lab repo image](./docs/assets/repo-image.jpeg)
+Standalone Gondolin-based lab for reproducible harness egress analysis inside monitored VMs.
 
-Standalone Gondolin-based lab for running coding harnesses inside monitored VMs, capturing HTTP egress, comparing configuration variants, and generating doc-ready summaries.
-
-## Initial scope
+Initial scope:
 - profile: `claude-code`
 - provider scenario: `openrouter`
-- modes:
+- comparison modes:
   - `openrouter-vanilla`
   - `openrouter-noextra`
 
-## What this repo gives you
-- reproducible harness image builds
-- monitored VM sessions with HTTP logging
-- interactive or log-only egress policy modes
-- NDJSON logs that are easy to diff and post-process
-- summary, diff, and Markdown report commands
-
 ## Quick start
-
-Install and build the CLI:
 
 ```bash
 pnpm install
@@ -35,7 +24,7 @@ node dist/cli.js build-image claude-code \
   --output ./.artifacts/images/claude-code
 ```
 
-Run the baseline session:
+Run vanilla:
 
 ```bash
 node dist/cli.js run claude-code \
@@ -47,13 +36,7 @@ node dist/cli.js run claude-code \
   --shell
 ```
 
-Inside the VM:
-
-```bash
-claude -p "Reply with exactly: vanilla-ok"
-```
-
-Run the comparison session:
+Run reduced-traffic mode:
 
 ```bash
 node dist/cli.js run claude-code \
@@ -65,13 +48,7 @@ node dist/cli.js run claude-code \
   --shell
 ```
 
-Inside the VM:
-
-```bash
-claude -p "Reply with exactly: noextra-ok"
-```
-
-Summarize and diff:
+Analyze:
 
 ```bash
 node dist/cli.js summarize ./logs/claude-vanilla.ndjson --profile claude-code
@@ -94,15 +71,14 @@ node dist/cli.js report claude-code ./logs/claude-noextra.ndjson \
 - `report <profile> <log.ndjson>`
 - `profiles`
 
-## Recommended reading
-- `docs/workflow.md` — concise full workflow to reproduce experiments
-- `docs/claude-code.md` — profile-specific behavior and caveats
-- `docs/reports/` — stored run reports derived from captured logs
-- `docs/architecture.md` — code layout and design
-- `harness-egress-lab-plan.md` — original implementation plan and findings
+## Docs
+- `docs/workflow.md` — the reproducible workflow
+- `docs/claude-code.md` — profile-specific notes
+- `docs/reports/claude-code-openrouter-manual.md` — main Claude Code findings
+- `docs/architecture.md` — code layout
 
 ## Notes
 - HTTP is the main focus in v1
+- `log-only` is best for reproducible comparisons
+- `first-host` and `always` are better for exploratory runs
 - SSH git/exec confirmation is supported when `SSH_AUTH_SOCK` is set
-- `log-only` is best for reproducible batch comparisons
-- `first-host` and `always` are best for exploratory runs

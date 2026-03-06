@@ -1,0 +1,7 @@
+node_modules
+dist
+.artifacts
+.pi
+logs
+staging/claude-code
+staging/claude-wrapper
