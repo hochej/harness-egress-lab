@@ -28,8 +28,6 @@ POST https://api.anthropic.com/api/event_logging/batch
 
 This is outbound data submission — not metadata retrieval. Captured payloads contained session/runtime metadata with internal event names like `tengu_reset_pro_to_opus_default` and `tengu_paste_text`.
 
-Anthropic's documentation states that non-essential traffic is disabled by default for Bedrock, Vertex, and Foundry. OpenRouter is not on that list — it routes through `ANTHROPIC_BASE_URL`, which Claude Code treats as the standard Claude API path. Our data confirms this: telemetry was active in vanilla mode despite using a third-party provider.
-
 Completely eliminated by `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1`.
 
 ### Plugin repository fetches (`github.com`)
@@ -54,7 +52,7 @@ Read-only metadata retrieval. The CHANGELOG fetch was absent with the disable fl
 
 ## Key takeaway
 
-Even when using a third-party provider, Claude Code is not provider-only. Unlike Bedrock, Vertex, and Foundry — where Anthropic disables non-essential traffic by default — OpenRouter and other `ANTHROPIC_BASE_URL`-based setups keep telemetry enabled. With default settings Claude Code submits telemetry to Anthropic and fetches plugin/security data from GitHub. Setting `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1` removes the Anthropic telemetry, but GitHub-hosted metadata fetches remain in both modes.
+Even when using a third-party provider, Claude Code is not provider-only. With default settings it also submits telemetry to Anthropic and fetches plugin/security data from GitHub. Setting `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1` removes the Anthropic telemetry, but GitHub-hosted metadata fetches remain in both modes.
 
 ## Sources
 
