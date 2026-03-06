@@ -10,16 +10,23 @@ Standalone Gondolin-based lab for reproducible harness egress analysis inside mo
 - `pnpm`
 - Gondolin host requirements working locally
 - `OPENROUTER_API_KEY` in your shell
-- Gondolin guest sources available locally for image builds
 
 ## Quick start
+
+Clone Gondolin (needed for guest image builds):
+
+```bash
+git clone https://github.com/earendil-works/gondolin.git /tmp/gondolin
+```
+
+Install and build:
 
 ```bash
 pnpm install
 pnpm build
 ```
 
-Build the image:
+Build the image (`GONDOLIN_GUEST_SRC` can point to any local Gondolin checkout):
 
 ```bash
 GONDOLIN_GUEST_SRC=/tmp/gondolin/guest \
