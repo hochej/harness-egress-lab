@@ -69,15 +69,6 @@ node dist/cli.js report claude-code ./logs/claude-noextra.ndjson \
   > docs/reports/claude-code-noextra.md
 ```
 
-## Commands
-
-- `build-image <profile>`
-- `run <profile>`
-- `summarize <log.ndjson>`
-- `diff <a.ndjson> <b.ndjson>`
-- `report <profile> <log.ndjson>`
-- `profiles`
-
 ## Useful flags
 
 Exploration:
@@ -108,8 +99,3 @@ Full-body capture for known telemetry endpoints:
 - Prefer `log-only` for comparisons
 - Keep reports in `docs/reports/`
 
-## Docs
-
-- `docs/architecture.md` — code layout
-- `docs/claude-code.md` — profile-specific config & caveats
-- `docs/reports/claude-code-openrouter-manual.md` — main Claude Code findings
