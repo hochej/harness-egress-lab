@@ -2,7 +2,10 @@
 
 Standalone [Gondolin](https://github.com/earendil-works/gondolin)-based lab for reproducible harness egress analysis inside monitored VMs.
 
-**Initial scope:** `claude-code` profile with OpenRouter (`openrouter-vanilla` / `openrouter-noextra`).
+**Profiles:**
+- `claude-code` with OpenRouter (`openrouter-vanilla` / `openrouter-noextra`)
+- `pi-coding-agent` with OpenRouter (`openrouter`)
+- `opencode` with OpenRouter (`openrouter`)
 
 ## Prerequisites
 
@@ -26,12 +29,28 @@ pnpm install
 pnpm build
 ```
 
-Build the image (`GONDOLIN_GUEST_SRC` can point to any local Gondolin checkout):
+`pi-coding-agent` and `opencode` assets are prepared locally during `build-image` from pinned manifests and upstream packages. The generated staging directories stay untracked.
+
+List available profiles:
+
+```bash
+node dist/cli.js profiles
+```
+
+Build images (`GONDOLIN_GUEST_SRC` can point to any local Gondolin checkout):
 
 ```bash
 GONDOLIN_GUEST_SRC=/tmp/gondolin/guest \
 node dist/cli.js build-image claude-code \
   --output ./.artifacts/images/claude-code
+
+GONDOLIN_GUEST_SRC=/tmp/gondolin/guest \
+node dist/cli.js build-image pi-coding-agent \
+  --output ./.artifacts/images/pi-coding-agent
+
+GONDOLIN_GUEST_SRC=/tmp/gondolin/guest \
+node dist/cli.js build-image opencode \
+  --output ./.artifacts/images/opencode
 ```
 
 Run vanilla:
@@ -56,6 +75,28 @@ node dist/cli.js run claude-code \
   --http-log ./logs/claude-noextra.ndjson \
   --confirm-mode log-only \
   --shell
+```
+
+Run pi with OpenRouter:
+
+```bash
+node dist/cli.js run pi-coding-agent \
+  --mode openrouter \
+  --image ./.artifacts/images/pi-coding-agent \
+  --workspace . \
+  --http-log ./logs/pi-coding-agent-openrouter.ndjson \
+  --confirm-mode log-only
+```
+
+Run OpenCode with OpenRouter:
+
+```bash
+node dist/cli.js run opencode \
+  --mode openrouter \
+  --image ./.artifacts/images/opencode \
+  --workspace . \
+  --http-log ./logs/opencode-openrouter.ndjson \
+  --confirm-mode log-only
 ```
 
 Analyze:

@@ -1,0 +1,7 @@
+{
+  "name": "harness-egress-lab-pi-coding-agent",
+  "private": true,
+  "dependencies": {
+    "@mariozechner/pi-coding-agent": "0.57.1"
+  }
+}

@@ -1,7 +1,9 @@
 import { claudeCodeProfile } from "./claude-code.js";
+import { opencodeProfile } from "./opencode.js";
+import { piCodingAgentProfile } from "./pi-coding-agent.js";
 import type { HarnessProfile } from "./types.js";
 
-const profiles = [claudeCodeProfile] as const;
+const profiles = [claudeCodeProfile, piCodingAgentProfile, opencodeProfile] as const;
 
 export function listProfiles(): HarnessProfile[] {
   return [...profiles];

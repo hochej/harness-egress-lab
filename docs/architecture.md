@@ -19,4 +19,11 @@
     - diff two runs
     - render Markdown reports
 
-The initial profile is `claude-code`, with OpenRouter-focused modes.
+Current profiles:
+- `claude-code`
+- `pi-coding-agent`
+- `opencode`
+
+Some profiles prepare ignored local staging assets from tracked manifests before the Gondolin image build runs.
+
+All current profiles are OpenRouter-focused.

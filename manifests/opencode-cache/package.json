@@ -1,0 +1,7 @@
+{
+  "name": "harness-egress-lab-opencode-cache",
+  "private": true,
+  "dependencies": {
+    "opencode-anthropic-auth": "0.0.13"
+  }
+}

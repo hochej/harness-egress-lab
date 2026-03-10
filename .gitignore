@@ -1,4 +1,9 @@
 node_modules/
+staging/pi-coding-agent/
+staging/opencode/
+staging/opencode-cache/
+staging/opencode-data/
+staging/opencode-state/
 dist/
 site/
 .artifacts/

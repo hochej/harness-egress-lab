@@ -1,0 +1,52 @@
+{
+  "arch": "aarch64",
+  "distro": "alpine",
+  "alpine": {
+    "version": "3.23.0",
+    "kernelPackage": "linux-virt",
+    "kernelImage": "vmlinuz-virt",
+    "rootfsPackages": [
+      "linux-virt",
+      "rng-tools",
+      "bash",
+      "ca-certificates",
+      "curl",
+      "fd",
+      "git",
+      "nodejs",
+      "npm",
+      "openssh",
+      "ripgrep",
+      "tmux"
+    ],
+    "initramfsPackages": []
+  },
+  "rootfs": {
+    "label": "gondolin-root",
+    "sizeMb": 1536
+  },
+  "postBuild": {
+    "copy": [
+      {
+        "src": "../staging/opencode",
+        "dest": "/opt/opencode"
+      },
+      {
+        "src": "../staging/opencode-wrapper",
+        "dest": "/usr/local/bin/opencode"
+      },
+      {
+        "src": "../staging/opencode-wrapper",
+        "dest": "/usr/bin/opencode"
+      },
+      {
+        "src": "../staging/opencode-cache",
+        "dest": "/var/cache/opencode"
+      },
+      {
+        "src": "../manifests/opencode-state/model.json",
+        "dest": "/var/state/opencode/model.json"
+      }
+    ]
+  }
+}

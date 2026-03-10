@@ -26,7 +26,15 @@ async function runDebugfs(rootfsPath: string, command: string): Promise<void> {
       timeout: 120_000,
     });
   } catch (error) {
-    const message = (error as Error).message;
+    const execError = error as Error & {
+      stdout?: string | Buffer;
+      stderr?: string | Buffer;
+    };
+    const message = [execError.message, execError.stdout, execError.stderr]
+      .filter((value): value is string | Buffer => value !== undefined)
+      .map((value) => String(value).trim())
+      .filter((value) => value.length > 0)
+      .join("\n");
     throw new Error(`debugfs command failed: ${command}\n${message}`);
   }
 }

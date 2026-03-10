@@ -24,6 +24,8 @@ export type EndpointCategory =
   | "security-metadata"
   | "git-fetch"
   | "package-registry"
+  | "model-catalog"
+  | "service"
   | "unknown";
 
 export type EndpointClassification = {
@@ -35,6 +37,7 @@ export interface HarnessProfile {
   name: string;
   description: string;
   buildConfigPath?: string;
+  prepareBuildAssets?(options?: { quiet?: boolean | undefined }): Promise<boolean>;
   defaultCommand: string[];
   defaultMode?: string;
   modes: RunModeDefinition[];

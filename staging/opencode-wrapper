@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+TARGET=/tmp/opencode-bin/opencode
+SOURCE=/opt/opencode/bin/opencode.gz
+if [ ! -x "$TARGET" ]; then
+  mkdir -p /tmp/opencode-bin
+  gzip -dc "$SOURCE" > "$TARGET"
+  chmod +x "$TARGET"
+fi
+exec "$TARGET" "$@"

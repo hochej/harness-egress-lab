@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+TARGET_DIR=/tmp/pi-coding-agent
+ARCHIVE=/opt/pi-coding-agent/node_modules.tar.gz
+CLI=$TARGET_DIR/node_modules/@mariozechner/pi-coding-agent/dist/cli.js
+if [ ! -f "$CLI" ]; then
+  mkdir -p "$TARGET_DIR"
+  tar -xzf "$ARCHIVE" -C "$TARGET_DIR"
+fi
+exec node "$CLI" "$@"

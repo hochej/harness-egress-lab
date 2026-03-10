@@ -33,6 +33,13 @@ export async function buildImage(
 
   await mkdir(outputDir, { recursive: true });
 
+  if (profile.prepareBuildAssets) {
+    const prepared = await profile.prepareBuildAssets({ quiet: options.quiet });
+    if (prepared) {
+      process.stdout.write(`Prepared local assets for ${profile.name}\n`);
+    }
+  }
+
   const config = parseBuildConfig(await readFile(configPath, "utf8"));
   const result = await buildAssets(config, {
     outputDir,
